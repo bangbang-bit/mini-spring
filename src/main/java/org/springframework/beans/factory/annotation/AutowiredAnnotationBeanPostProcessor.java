@@ -34,6 +34,7 @@ public class AutowiredAnnotationBeanPostProcessor implements InstantiationAwareB
 			Value valueAnnotation = field.getAnnotation(Value.class);
 			if (valueAnnotation != null) {
 				String value = valueAnnotation.value();
+				// 内嵌值的解析器 ==> ${}的解析器
 				value = beanFactory.resolveEmbeddedValue(value);
 				BeanUtil.setFieldValue(bean, field.getName(), value);
 			}
