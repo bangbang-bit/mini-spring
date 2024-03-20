@@ -18,31 +18,36 @@ import org.springframework.test.service.WorldServiceImpl;
  */
 public class DynamicProxyTest {
 
-	private AdvisedSupport advisedSupport;
+    private AdvisedSupport advisedSupport;
 
-	@Before
-	public void setup() {
-		WorldService worldService = new WorldServiceImpl();
+    @Before
+    public void setup() {
+        WorldService worldService = new WorldServiceImpl();
 
-		advisedSupport = new AdvisedSupport();
-		TargetSource targetSource = new TargetSource(worldService);
-		// 准备通知
-		WorldServiceInterceptor methodInterceptor = new WorldServiceInterceptor();
-		MethodMatcher methodMatcher = new AspectJExpressionPointcut("execution(* org.springframework.test.service.WorldService.explode(..))").getMethodMatcher();
-		advisedSupport.setTargetSource(targetSource);
-		advisedSupport.setMethodInterceptor(methodInterceptor);
-		advisedSupport.setMethodMatcher(methodMatcher);
-	}
+        advisedSupport = new AdvisedSupport();
+        TargetSource targetSource = new TargetSource(worldService);
+        // 准备通知
+        WorldServiceInterceptor methodInterceptor = new WorldServiceInterceptor();
+        MethodMatcher methodMatcher = new AspectJExpressionPointcut("execution(* org.springframework.test.service.WorldService.explode(..))").getMethodMatcher();
+        advisedSupport.setTargetSource(targetSource);
+        advisedSupport.setMethodInterceptor(methodInterceptor);
+        advisedSupport.setMethodMatcher(methodMatcher);
 
-	@Test
-	public void testJdkDynamicProxy() throws Exception {
-		WorldService proxy = (WorldService) new JdkDynamicAopProxy(advisedSupport).getProxy();
-		proxy.explode();
-	}
+        /*ProxyFactory factory = new ProxyFactory();
+        Target target = new Target();
+        factory.setTarget(target);*/
 
-	@Test
-	public void testCglibDynamicProxy() throws Exception {
-		WorldService proxy = (WorldService) new CglibAopProxy(advisedSupport).getProxy();
-		proxy.explode();
-	}
+    }
+
+    @Test
+    public void testJdkDynamicProxy() throws Exception {
+        WorldService proxy = (WorldService) new JdkDynamicAopProxy(advisedSupport).getProxy();
+        proxy.explode();
+    }
+
+    @Test
+    public void testCglibDynamicProxy() throws Exception {
+        WorldService proxy = (WorldService) new CglibAopProxy(advisedSupport).getProxy();
+        proxy.explode();
+    }
 }
