@@ -11,8 +11,8 @@ public class WorldServiceInterceptor implements MethodInterceptor {
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		System.out.println("Do something before the earth explodes");
-		Object result = invocation.proceed();
+		Object result = invocation.proceed(); // 调用目标
 		System.out.println("Do something after the earth explodes");
-		return result;
+		return result; // 原样返回目标的返回结果
 	}
 }

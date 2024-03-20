@@ -753,4 +753,54 @@ public class DynamicProxyTest {
 
 
 
+## spring是如何统一两种代理技术的?
+### spring底层的切点实现
+### spring底层的通知实现
+### spring底层的切面实现
+
+```java
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+@Aspect
+static class CustomAspect() {
+    @Before("execution(* foo())")
+    public void before(){
+        System.out.println("前置增强的逻辑");
+    }
+}
+```
+
+
+
+#### 对所有切面类进行处理的 beanPostProcessor  根据切面创建代理对象并将高级切面转成低级切面 AnnotationAwareAspectJAutoProxyCreator 自动代理的创建器 根据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

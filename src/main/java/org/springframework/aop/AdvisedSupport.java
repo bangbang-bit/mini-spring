@@ -3,6 +3,8 @@ package org.springframework.aop;
 import org.aopalliance.intercept.MethodInterceptor;
 
 /**
+ *
+ * advisor是更细粒度的切面, 仅有一个通知加切点
  * @author derekyi
  * @date 2020/12/6
  */

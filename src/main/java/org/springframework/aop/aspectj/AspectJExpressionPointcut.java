@@ -12,6 +12,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ *
+ * 切面 = 通知方法 + 切点
+ *
+ *
+ * 根据切点表达式来判断目标方法是否应该增强 它是Pointcut接口的实现类
  * @author derekyi
  * @date 2020/12/5
  */

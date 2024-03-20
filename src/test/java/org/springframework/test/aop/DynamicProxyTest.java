@@ -26,6 +26,7 @@ public class DynamicProxyTest {
 
 		advisedSupport = new AdvisedSupport();
 		TargetSource targetSource = new TargetSource(worldService);
+		// 准备通知
 		WorldServiceInterceptor methodInterceptor = new WorldServiceInterceptor();
 		MethodMatcher methodMatcher = new AspectJExpressionPointcut("execution(* org.springframework.test.service.WorldService.explode(..))").getMethodMatcher();
 		advisedSupport.setTargetSource(targetSource);
